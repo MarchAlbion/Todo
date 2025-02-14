@@ -14,7 +14,7 @@ export const TodoList = ({ todos, deleteTodos }: Props) => {
           {todos?.map((todo) => (
             <Todo
               todo={todo}
-              key={todo.id + todo.title}
+              key={todo.id}
               deleteTodos={deleteTodos}
             />
           ))}

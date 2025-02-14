@@ -7,7 +7,7 @@ import { postTodo } from "@/utils/api";
 import { TodoType } from "@/types/types";
 import { queryClient } from "@/utils/queryClient";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 type Props = {
   addTodo: (todo: TodoType) => void;
@@ -23,7 +23,10 @@ export const Header = ({ addTodo }: Props) => {
   const mutation = useMutation({
     mutationFn: (newTodo: TodoType) => postTodo(newTodo),
     onSuccess: (newTodo) => {
-      addTodo(newTodo.data);
+      addTodo({
+        ...newTodo.data,
+        id: Math.random() * 10,
+      });
       queryClient.invalidateQueries({ queryKey: ["todos"] });
     },
   });
